@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { UsuariosResponse } from '../interfaces/usuarios-response.interface';
+import { UsuarioResponse } from '../interfaces/usuario-response.interface';
+import {
+  Datum,
+  UsuariosResponse,
+} from '../interfaces/usuarios-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +18,12 @@ export class UsuarioService {
   getUsers() {
     return this.http
       .get<UsuariosResponse>(`${this.url}/users?per_page=6`)
+      .pipe(map(({ data }) => data));
+  }
+
+  getUserById(id: number) {
+    return this.http
+      .get<UsuarioResponse>(`${this.url}/users/${id}`)
       .pipe(map(({ data }) => data));
   }
 }

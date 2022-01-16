@@ -1,1 +1,45 @@
-<p>usuario works!</p>
+<div class="alert alert-info text-center" role="alert" *ngIf="loading">
+  <h4 class="alert-heading">Cargando...</h4>
+  <p>
+    <i class="fa fa-sync fa-spin fa-2x"></i>
+  </p>
+  <p class="mb-0"></p>
+</div>
+
+<div class="alert alert-danger text-center" role="alert" *ngIf="error">
+  <h4 class="alert-heading">Algo ocurrió mal...</h4>
+  <p class="mb-1"></p>
+  <dl>
+    <dt>¿Qué ha pasado?</dt>
+    <dd>
+      Ocurrió un <span class="font-monospace">{{ error.name }}</span>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>¿Qué quiere decir eso?</dt>
+    <dd class="font-monospace">{{ error.msg }}</dd>
+  </dl>
+  <p class="mb-0"></p>
+</div>
+
+<div class="row" *ngIf="!loading && !error">
+  <div class="col-4">
+    <img [src]="usuario?.avatar" alt="Avatar" class="img-thumbnail" />
+  </div>
+
+  <div class="col">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <dl>
+          <dt>Nombre</dt>
+          <dd>{{ usuario?.first_name }}</dd>
+        </dl>
+        <dl>
+          <dt>Apellido</dt>
+          <dd>{{ usuario?.last_name }}</dd>
+        </dl>
+      </li>
+    </ul>
+  </div>
+</div>
