@@ -1,0 +1,25 @@
+- name: Deploy to GitHub Pages
+- on:
+    - push:
+        branches:
+          - main
+
+- jobs:
+  build_and_deploy:
+    runs_on: ubuntu-latest
+    steps:
+      - name: Check out 🔍
+      - uses: actions/checkout@v2
+
+      - name: Installing dependencies 📦
+      - run: npm install
+
+      - name: Building application 🏗️
+      - run: npm run build
+
+      - name: Deploy 🚀
+      - uses: JamesIves/github-pages-deploy-action@v4.2.2
+      - with:
+          - folder: dist/http-effects
+          - branch: /
+          - commit-message: "ci: made deploy to GH Pages"
